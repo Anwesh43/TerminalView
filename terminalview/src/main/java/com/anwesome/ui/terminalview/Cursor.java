@@ -24,6 +24,15 @@ public class Cursor {
         canvas.restore();
         indicator++;
     }
+    public void updateXY(float w) {
+        if(x+this.w >= w) {
+            x = 0;
+            y = y+w;
+        }
+        else {
+            x = x+w;
+        }
+    }
     public int hashCode() {
         return (int)(x+y+w);
     }
