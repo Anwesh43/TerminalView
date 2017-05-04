@@ -10,19 +10,25 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class CommandText {
     private float y,w;
     private Paint paint;
-    public CommandText(float y,float w,Paint paint,String word) {
+    public CommandText(float y,float w,Paint paint,char letter) {
         this.y = y;
         this.w = w;
         this.paint = paint;
-        currText = new LineText(0,word);
+        currText = new LineText(0,""+letter);
+    }
+    public float getEndY() {
+        return this.y+(currText!=null?currText.y:0);
+    }
+    public float getEndX() {
+        return currText == null?0:paint.measureText(currText.text);
     }
     private ConcurrentLinkedQueue<LineText> lineTexts = new ConcurrentLinkedQueue<>();
     private LineText currText;
     public void addWord(char unicodeChar) {
         String newText = currText.text+unicodeChar;
-        if(paint.measureText(newText) > w) {
+        if(paint.measureText(newText) > 17*w/20) {
             lineTexts.add(currText);
-            currText = new LineText(y+paint.getTextSize(),""+unicodeChar);
+            currText = new LineText(currText.y+paint.getTextSize(),""+unicodeChar);
         }
         else {
             currText.updateText(unicodeChar);
@@ -44,7 +50,7 @@ public class CommandText {
     }
     private class LineText{
         private float y = 0;
-        private String text;
+        private String text="";
         public void updateText(char letter) {
             text += letter;
         }

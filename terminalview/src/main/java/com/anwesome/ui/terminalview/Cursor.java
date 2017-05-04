@@ -17,7 +17,7 @@ public class Cursor {
     }
     public void resetCursor() {
         this.x = initX;
-        this.y += (3*w)/2;
+        this.y +=  2*w;
     }
     public float getY() {
         return y;
@@ -29,14 +29,9 @@ public class Cursor {
         canvas.drawLine(0, 0, w, 0, paint);
         canvas.restore();
     }
-    public void updateXY(float w) {
-        if(x+this.w >= w) {
-            x = 0;
-            y = y+3*this.w/2;
-        }
-        else {
-            x = x+this.w;
-        }
+    public void updateXY(float x,float y) {
+        this.x = x+initX;
+        this.y = y;
     }
     public int hashCode() {
         return (int)(x+y+w);
