@@ -18,8 +18,7 @@ public class LineIndicator {
         paint.setColor(Color.WHITE);
         for(int i=0;i<2;i++) {
             canvas.save();
-            canvas.scale(1,i*2-1);
-            canvas.drawLine(x,y,x+size,y+size,paint);
+            canvas.drawLine(x,y+2*size*i,x+size,y+size,paint);
             canvas.restore();
         }
     }
