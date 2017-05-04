@@ -22,7 +22,7 @@ public class LineIndicator {
             canvas.restore();
         }
     }
-    public void updateY(float yGap) {
-        y+=yGap;
+    public void updateY(float cursorY) {
+        this.y = cursorY-2*size;
     }
 }

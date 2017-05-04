@@ -24,7 +24,13 @@ public class TerminalView extends View {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if(keyEvent.getAction() == KeyEvent.ACTION_DOWN && !(keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK)) {
-                    cursor.updateXY(w*17/20);
+                    if(keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                        cursor.resetCursor();
+                        lineIndicator.updateY(cursor.getY());
+                    }
+                    else {
+                        cursor.updateXY(w * 17 / 20);
+                    }
                     postInvalidate();
                 }
                 return false;
