@@ -28,6 +28,9 @@ public class CommandText {
             currText.updateText(unicodeChar);
         }
     }
+    public int hashCode() {
+        return lineTexts.hashCode()+(int)y;
+    }
     public void drawText(Canvas canvas,Paint paint) {
         canvas.save();
         canvas.translate(0,y);
@@ -48,6 +51,9 @@ public class CommandText {
         public LineText(float y,String text) {
             this.text = text;
             this.y = y;
+        }
+        public int hashCode() {
+            return text.hashCode()+(int)y;
         }
         public void draw(Canvas canvas) {
             canvas.drawText(text,0,this.y,paint);
