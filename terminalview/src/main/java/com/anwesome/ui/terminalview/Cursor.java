@@ -8,7 +8,7 @@ import android.graphics.Paint;
  * Created by anweshmishra on 04/05/17.
  */
 public class Cursor {
-    private float x,y,w,indicator = 0;
+    private float x,y,w;
     public void setDimension(float x,float y,float w) {
         this.x = x;
         this.y = y;
@@ -18,19 +18,16 @@ public class Cursor {
         paint.setColor(Color.WHITE);
         canvas.save();
         canvas.translate(x,y);
-        if(indicator%2 == 0) {
-            canvas.drawLine(0, 0, w, 0, paint);
-        }
+        canvas.drawLine(0, 0, w, 0, paint);
         canvas.restore();
-        indicator++;
     }
     public void updateXY(float w) {
         if(x+this.w >= w) {
             x = 0;
-            y = y+w;
+            y = y+3*this.w/2;
         }
         else {
-            x = x+w;
+            x = x+this.w;
         }
     }
     public int hashCode() {
